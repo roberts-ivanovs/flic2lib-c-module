@@ -113,13 +113,6 @@ name = "flic2lib-sys"
 version = "0.1.0"
 dependencies = [
  "bindgen",
-]
-
-[[package]]
-name = "flic2lib-wasm"
-version = "0.1.0"
-dependencies = [
- "flic2lib-sys",
  "wasm-bindgen",
 ]
 

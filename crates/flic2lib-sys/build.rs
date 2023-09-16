@@ -3,22 +3,20 @@ use std::path::PathBuf;
 
 fn main() {
     // Tell cargo to look for shared libraries in the specified directory
-    println!("cargo:rustc-link-search=./flic-source");
+    println!("cargo:rustc-link-search=../../flic-source");
 
     // Tell cargo to invalidate the built crate whenever the wrapper changes
     gen_file("flic2.h");
-    gen_file("flic2_crypto.h");
-    gen_file("flic2_packets.h");
 }
 
 fn gen_file(path: &str) {
-    println!("cargo:rerun-if-changed=./flic-source/{path}");
+    println!("cargo:rerun-if-changed=../../flic-source/{path}");
 
     // The bindgen::Builder is the main entry point
     // to bindgen, and lets you build up options for
     // the resulting bindings.
     let bindings = bindgen::Builder::default()
-        .header(format!("./flic-source/{path}").as_str())
+        .header(format!("../../flic-source/{path}").as_str())
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .generate()
         .expect("Unable to generate bindings");
